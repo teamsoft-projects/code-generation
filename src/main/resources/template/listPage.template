@@ -1,0 +1,62 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+<jsp:useBean id="resultInfo" scope="request" type="com.teamsoft.common.model.ResultInfo"/>
+<div class="admin-main" id="##(modelNameLow)-list" data-url="##(preffix)##(pagePreffix)##(modelNameLow)/listByEntity.json">
+	<!-- 列表页面 -->
+	<div name="mainPage">
+		<jsp:include page="/common/functions.jsp"/> <!-- 引入菜单功能按钮列表 -->
+		<div class="layui-form pt1">
+			<table class="layui-table admin-table" lay-even>
+				<thead>
+				<tr>
+					<th style="width: 30px;">
+						<input type="checkbox" lay-filter="allselector-##(modelNameLow)-list" lay-skin="primary" title="">
+					</th>
+					##(cols)
+				</tr>
+				</thead>
+				<tbody name="dataList">
+				</tbody>
+			</table>
+		</div>
+		<div class="admin-table-page">
+			<div name="paged" class="page"></div>
+		</div>
+	</div>
+	<!-- 详情页面 -->
+	<div name="subPage" class="hide"></div>
+	<!-- 列表模板 -->
+	<script type="text/template" name="dataListTemplate">
+		{{# layui.each(d, function(index, item) { }}
+		<tr>
+			<td><input type="checkbox" lay-skin="primary" title="" lay-filter="selector-##(modelNameLow)-list" identity="{{item.id}}"></td>
+			##(colsData)
+		</tr>
+		{{# }); }}
+	</script>
+	<!-- 查询区域模板 -->
+	<script type="text/template" name="queryAreaTemplate">
+		<form class="layui-form query-form" name="queryForm">
+			<dl>
+				<dt>名称</dt>
+				<dd><input name="name" class="layui-input" autocomplete="off" title=""></dd>
+			</dl>
+			<dl>
+				<dt></dt>
+				<dd>
+					<a name="queryBtn" href="javascript:void(0);" class="layui-btn layui-btn-primary"
+					   lay-submit lay-filter="querySubmit-##(modelNameLow)-list">查询</a>
+				</dd>
+				<dt></dt>
+				<dd><a name="resetBtn" href="javascript:void(0);" class="layui-btn layui-btn-primary">重置</a></dd>
+			</dl>
+		</form>
+	</script>
+</div>
+<script>
+	+function() {
+		// 创建页面对象
+		Pager.create({
+			id: '##(modelNameLow)-list'
+		});
+	}();
+</script>

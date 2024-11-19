@@ -1,0 +1,38 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+<jsp:useBean id="resultInfo" scope="request" type="com.teamsoft.common.model.ResultInfo"/>
+<div id="##(modelNameLow)-edit">
+	<form class="layui-form" action="">
+		<input type="hidden" name="id" value="${resultInfo.data.id}">
+		<!-- 编辑页面 -->
+		<blockquote class="layui-elem-quote mb25">
+			<a href="javascript:void(0);" class="layui-btn layui-btn-sm" name="back">
+				<i class="layui-icon">&#xe65c;</i> 返回
+			</a>
+			<a href="javascript:void(0);" class="layui-btn layui-btn-sm" lay-submit lay-filter="##(modelNameLow)Submit">
+				<i class="layui-icon">&#x1005;</i> 保存
+			</a>
+		</blockquote>
+		##(cols)
+	</form>
+</div>
+<script>
+	+function() {
+		let $dom = $("###(modelNameLow)-edit");
+		// 监听表单提交
+		form.on('submit(##(modelNameLow)Submit)', function(data) {
+			U.loading();
+			ajaxCall({
+				url: '##(preffix)##(pagePreffix)##(modelNameLow)/save.json',
+				param: data.field,
+				success: function() {
+					U.fireEvent("##(modelNameLow)-list-back", data.field);
+				}
+			});
+			return false;
+		});
+		// 返回上个页面的事件
+		$dom.find("[name=back]").click(function() {
+			U.fireEvent("##(modelNameLow)-list-back");
+		});
+	}();
+</script>

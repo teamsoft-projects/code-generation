@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <entry name="dburl" value="jdbc:mysql://127.0.0.1:3306/storemgr" />
+    <entry name="dbuser" value="root" />
+    <entry name="dbpass" value="123456" />
+    <entry name="pageType" value="FreeMarker" />
+    <entry name="javaRoot" value="src/main/java" />
+    <entry name="packageRoot" value="com.teamsoft.mgr" />
+    <entry name="pageRoot" value="src/main/webapp/WEB-INF/view" />
+    <entry name="pageRootFreeMarker" value="src/main/resources/templates" />
+    <entry name="outputPath" value="C:/Users/zhangcc/Desktop/output" />
+</data>
